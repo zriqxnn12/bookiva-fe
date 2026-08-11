@@ -1,9 +1,33 @@
-import { Search } from "lucide-react";
+import { ArrowRight, Clock, Search, Shield, Star, Zap } from "lucide-react";
 import React, { useState } from "react";
 import { Helmet } from "react-helmet-async";
+import { Link } from "react-router-dom";
 
 function HomePage() {
   const [search, setSearch] = useState("");
+
+  const features = [
+    {
+      icon: Zap,
+      title: "Instant Booking",
+      desc: "Book any service in under 60 seconds with real time availability",
+    },
+    {
+      icon: Shield,
+      title: "Secure Payments",
+      desc: "All payments processed securely via Xendit payment gateway",
+    },
+    {
+      icon: Clock,
+      title: "Flexible Scheduling",
+      desc: "Choose from multiple slots that fit your schedule",
+    },
+    {
+      icon: Star,
+      title: "Verified Services",
+      desc: "All service providers are vetted and highly rated by our customers",
+    },
+  ];
 
   return (
     <>
@@ -16,8 +40,9 @@ function HomePage() {
       </Helmet>
 
       <div className="min-h-screen bg-slate-50">
+        {/* hero banner */}
         <section className="relative bg-gradient-to-br from-blue-950 via-blue-900 to-blue-800 text-white overflow-hidden">
-          <div className="relative max-w-7xl mx-auto px-6 lg:px-8 py-28">
+          <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-28">
             <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/10 rounded-full px-4 py-1.5 font-bold text-sm">
               <span className="rounded-full h-2 w-2 bg-orange-500"></span> Book
               service instantly, no hassie
@@ -29,7 +54,7 @@ function HomePage() {
               </span>{" "}
               near you
             </h1>
-            <p className="text-blue-200 text-lg max-w-xl mb-8">
+            <p className="text-blue-200 max-w-xl mb-8">
               From tennis court to beauty salons, discover and book premium
               services with real-time availability and instant confirmation.
             </p>
@@ -76,17 +101,107 @@ function HomePage() {
           </div>
         </section>
 
-        <section className="relative overflow-hidden bg-slate-100">
-          <div className="relative max-w-7xl mx-auto px-6 lg:px-8 py-14">
-            <div className="flex items-center justify-center gap-4">
-              <div className="px-3 py-2 border border-gray-300 rounded-lg">
-                <p>Sports</p>
-              </div>
-              <div className="px-3 py-2 border border-gray-300 rounded-lg">
-                <p>Sports</p>
-              </div>
-              <div className="px-3 py-2 border border-gray-300 rounded-lg">
-                <p>Sports</p>
+        {/* button filter section */}
+        <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+          <div className="flex flex-wrap gap-3 justify-center">
+            {[
+              { emoji: "🎾", label: "Sports" },
+              { emoji: "💇‍♀️", label: "Beauty" },
+              { emoji: "💆", label: "Wellness" },
+              { emoji: "🏋️‍♀️", label: "Fitness" },
+            ].map(({ emoji, label }) => (
+              <Link
+                to={`/services?category=${label.toLowerCase()}`}
+                key={label}
+                className="flex items-center font-medium gap-2 rounded-xl px-5 py-2 bg-white border border-slate-500 hover:border-slate-800 hover:bg-slate-300 transition-all text-sm text-slate-700 hover:shadow-sm"
+              >
+                <span className="text-lg">{emoji}</span>
+                {label}
+              </Link>
+            ))}
+            <Link
+              to="/services"
+              className="bg-blue-800 px-5 py-2 font-medium rounded-xl text-white flex items-center gap-3 text-sm hover:bg-blue-900 transition-all hover:shadow-sm"
+            >
+              All services <ArrowRight size={15} />
+            </Link>
+          </div>
+        </section>
+
+        {/* featured services section */}
+        <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+          <div className="flex items-center justify-between">
+            <div>
+              <h2 className="capitalize text-2xl font-bold text-slate-900">
+                featured services
+              </h2>
+              <p className="text-slate-800 mt-1 text-sm">
+                Handpicked top-rated services
+              </p>
+            </div>
+            <Link
+              to="/services"
+              className="text-blue-700 text-sm flex gap-1 items-center font-medium hover:text-blue-900"
+            >
+              View All <ArrowRight size={14} />
+            </Link>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 mt-3">
+            {/* card component */}
+          </div>
+        </section>
+
+        {/* why section */}
+        <section className="bg-white border-y border-slate-200">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <div className="text-center">
+              <h1 className="font-bold text-2xl text-slate-900">
+                Why Choose BookIva?
+              </h1>
+              <p className="text-slate-800">
+                Everything you need for a seamless booking experience
+              </p>
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-12">
+              {features.map(({ icon: Icon, title, desc }) => (
+                <div key={title} className="text-center p-6">
+                  <div className="w-12 h-12 flex items-center justify-center bg-blue-50 rounded-xl mx-auto mb-4">
+                    <Icon size={22} className="text-blue-700" />
+                  </div>
+                  <h3 className="font-semibold text-slate-900">{title}</h3>
+                  <p className="text-sm text-slate-800 leading-relaxed">
+                    {desc}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+          <div className="relative p-8 sm:p-12 rounded-3xl bg-gradient-to-br from-blue-950 via-blue-900 to-blue-800 text-white text-center overflow-hidden">
+            <div className="relative">
+              <h2 className="text-2xl sm:text-3xl font-bold mb-3 text-slate-50">
+                Ready to book your next service?
+              </h2>
+              <p className="text-blue-200 max-w-lg mb-8 mx-auto">
+                Join thousands of happy customers who book their favorite
+                services through BookIva.
+              </p>
+              <div className="flex flex-wrap justify-center gap-3">
+                <Link
+                  to="/register"
+                  className="bg-white text-blue-900 px-6 py-3 font-semibold rounded-xl hover:text-blue-950 transition-all active:scale-95 shadow-lg"
+                >
+                  Create free account
+                </Link>
+                <Link
+                  to="/services"
+                  className="border border-white/30 px-6 py-3 rounded-xl hover:bg-white/10 transition-all"
+                >
+                  Browse services
+                </Link>
               </div>
             </div>
           </div>
