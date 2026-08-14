@@ -8,15 +8,30 @@ import {
   Phone,
   User,
 } from "lucide-react";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../context/AuthContext";
 
 function Register() {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [phone, setPhone] = useState("");
+  const [form, setForm] = useState({
+    name: "",
+    email: "",
+    password: "",
+    phone: "",
+  });
+  const { register } = useContext(AuthContext);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      await register({
+        ...form,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <>
@@ -127,7 +142,7 @@ function Register() {
                 <div className="flex-1 h-px bg-slate-200"></div>
               </div>
 
-              <form action="#" className="space-y-4">
+              <form onSubmit={handleSubmit} className="space-y-4">
                 <div>
                   <label className="text-sm font-medium text-slate-800 mb-1.5 block">
                     Full name
@@ -139,8 +154,10 @@ function Register() {
                     />
                     <input
                       type="text"
-                      value={name}
-                      onChange={(e) => setName(e.target.value)}
+                      value={form.name}
+                      onChange={(e) =>
+                        setForm({ ...form, name: e.target.value })
+                      }
                       className="input pl-10"
                       placeholder="John Doe"
                       required
@@ -158,8 +175,10 @@ function Register() {
                     />
                     <input
                       type="email"
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
+                      value={form.email}
+                      onChange={(e) =>
+                        setForm({ ...form, email: e.target.value })
+                      }
                       className="input pl-10"
                       placeholder="you@gmail.com"
                       required
@@ -177,8 +196,10 @@ function Register() {
                     />
                     <input
                       type="phone"
-                      value={phone}
-                      onChange={(e) => setPhone(e.target.value)}
+                      value={form.phone}
+                      onChange={(e) =>
+                        setForm({ ...form, phone: e.target.value })
+                      }
                       className="input pl-10"
                       placeholder="+62 812 3456 7890"
                       required
@@ -196,8 +217,10 @@ function Register() {
                     />
                     <input
                       type="password"
-                      value={password}
-                      onChange={(e) => setPassword(e.target.value)}
+                      value={form.password}
+                      onChange={(e) =>
+                        setForm({ ...form, password: e.target.value })
+                      }
                       className="input pl-10"
                       placeholder="Min 6 characters"
                       required

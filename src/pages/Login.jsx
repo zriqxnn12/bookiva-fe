@@ -4,9 +4,6 @@ import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
 
 function Login() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-
   return (
     <>
       <Helmet>
@@ -105,8 +102,6 @@ function Login() {
                     />
                     <input
                       type="email"
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
                       className="input pl-10"
                       placeholder="you@gmail.com"
                       required
@@ -124,8 +119,6 @@ function Login() {
                     />
                     <input
                       type="password"
-                      value={password}
-                      onChange={(e) => setPassword(e.target.value)}
                       className="input pl-10"
                       placeholder="Min 6 characters"
                       required
