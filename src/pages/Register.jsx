@@ -13,6 +13,11 @@ import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
 
 function Register() {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [phone, setPhone] = useState("");
+
   return (
     <>
       <Helmet>
@@ -134,6 +139,8 @@ function Register() {
                     />
                     <input
                       type="text"
+                      value={name}
+                      onChange={(e) => setName(e.target.value)}
                       className="input pl-10"
                       placeholder="John Doe"
                       required
@@ -151,6 +158,8 @@ function Register() {
                     />
                     <input
                       type="email"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
                       className="input pl-10"
                       placeholder="you@gmail.com"
                       required
@@ -168,6 +177,8 @@ function Register() {
                     />
                     <input
                       type="phone"
+                      value={phone}
+                      onChange={(e) => setPhone(e.target.value)}
                       className="input pl-10"
                       placeholder="+62 812 3456 7890"
                       required
@@ -185,6 +196,8 @@ function Register() {
                     />
                     <input
                       type="password"
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
                       className="input pl-10"
                       placeholder="Min 6 characters"
                       required
