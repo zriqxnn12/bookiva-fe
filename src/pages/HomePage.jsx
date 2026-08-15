@@ -45,7 +45,7 @@ function HomePage() {
       <div className="min-h-screen bg-slate-50">
         {/* hero banner */}
         <section className="relative bg-gradient-to-br from-blue-950 via-blue-900 to-blue-800 text-white overflow-hidden">
-          <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+          <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
             <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/10 rounded-full px-4 py-1.5 font-bold text-sm">
               <span className="rounded-full h-2 w-2 bg-orange-500"></span> Book
               service instantly, no hassie

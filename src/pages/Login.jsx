@@ -1,9 +1,26 @@
 import { CalendarDays, Lock, Mail } from "lucide-react";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../context/AuthContext";
 
 function Login() {
+  const [form, setForm] = useState({
+    email: "",
+    password: "",
+  });
+
+  const { login } = useContext(AuthContext);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      await login(form.email, form.password);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <>
       <Helmet>
@@ -90,7 +107,7 @@ function Login() {
                 <div className="flex-1 h-px bg-slate-200"></div>
               </div>
 
-              <form action="#" className="space-y-4">
+              <form onSubmit={handleSubmit} className="space-y-4">
                 <div>
                   <label className="text-sm font-medium text-slate-800 mb-1.5 block">
                     Email
@@ -102,6 +119,10 @@ function Login() {
                     />
                     <input
                       type="email"
+                      value={form.email}
+                      onChange={(e) =>
+                        setForm({ ...form, email: e.target.value })
+                      }
                       className="input pl-10"
                       placeholder="you@gmail.com"
                       required
@@ -119,8 +140,12 @@ function Login() {
                     />
                     <input
                       type="password"
+                      value={form.password}
+                      onChange={(e) =>
+                        setForm({ ...form, password: e.target.value })
+                      }
                       className="input pl-10"
-                      placeholder="Min 6 characters"
+                      placeholder="**********"
                       required
                     />
                   </div>

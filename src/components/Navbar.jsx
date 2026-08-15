@@ -1,9 +1,21 @@
-import { CalendarDays } from "lucide-react";
-import React from "react";
+import {
+  CalendarDays,
+  ChevronDown,
+  LayoutDashboard,
+  LogOut,
+  Settings,
+} from "lucide-react";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../context/AuthContext";
 
 function Navbar() {
+  const [dropdownOpen, setDropdownOpen] = useState(false);
   const pathActive = window.location.pathname === "/";
+
+  const { isAuthenticated, user } = useContext(AuthContext);
+
+  const handleLogout = () => {};
 
   return (
     <nav className="sticky top-0 z-50 bg-white/90 backdrop-blur-0 border-b border-slate-200 shadow-sm">
@@ -34,12 +46,65 @@ function Navbar() {
           </div>
 
           <div className="hidden md:flex items-center gap-2">
-            <Link to="/login" className="text-sm btn-secondary px-4 py-2">
-              Sign In
-            </Link>
-            <Link to="/register" className="text-sm btn-primary px-4 py-2">
-              Get Started
-            </Link>
+            {isAuthenticated ? (
+              <div className="relative">
+                <button
+                  onClick={() => setDropdownOpen((prev) => !prev)}
+                  className="flex items-center gap-2 px-3 py-2 rounded-xl hover:bg-slate-300 transition-colors"
+                >
+                  <span className="text-sm font-medium text-slate-700">
+                    {user?.name}
+                  </span>
+                  <ChevronDown
+                    size={14}
+                    className={`text-slate-500 transition-transform ${dropdownOpen ? "rotate-180" : ""}`}
+                  />
+                </button>
+                {/* dropdown */}
+                {dropdownOpen && (
+                  <div className="absolute right-0 w-52 mt-1 bg-white shadow-xl border border-slate-300 px-2 py-1 rounded-lg">
+                    <div className="p-2 border-b border-slate-300">
+                      <p className="text-xs text-slate-400">Signed as</p>
+                      <p className="text-sm text-slate-700 font-semibold">
+                        {user?.email}
+                      </p>
+                    </div>
+                    {user?.role === "ADMIN" ? (
+                      <Link
+                        to="/admin"
+                        onClick={() => setDropdownOpen(false)}
+                        className="flex items-center gap-2 px-4 py-2.5 text-sm text-slate-700 hover:bg-slate-50 transition-colors"
+                      >
+                        <Settings size={15} /> Admin dashboard
+                      </Link>
+                    ) : (
+                      <Link
+                        to="/dashboard"
+                        onClick={() => setDropdownOpen(false)}
+                        className="flex items-center gap-2 px-4 py-2.5 text-sm text-slate-700 hover:bg-slate-50 transition-colors"
+                      >
+                        <LayoutDashboard size={15} /> My dashboard
+                      </Link>
+                    )}
+                    <button
+                      onClick={handleLogout}
+                      className="flex items-center gap-2 px-4 py-2.5 text-sm text-red-500 hover:bg-slate-50 transition-colors"
+                    >
+                      <LogOut size={15} /> Sign out
+                    </button>
+                  </div>
+                )}
+              </div>
+            ) : (
+              <>
+                <Link to="/login" className="text-sm btn-secondary px-4 py-2">
+                  Sign In
+                </Link>
+                <Link to="/register" className="text-sm btn-primary px-4 py-2">
+                  Get Started
+                </Link>
+              </>
+            )}
           </div>
         </div>
       </div>
