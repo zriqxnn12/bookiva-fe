@@ -53,7 +53,7 @@ function AuthProvider({ children }) {
     setIsAuthenticated(false);
     setToken("");
     setUser(null);
-    navigate("/");
+    navigate("/login");
   };
 
   return (

@@ -16,9 +16,11 @@ function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const pathActive = window.location.pathname === "/";
 
-  const { isAuthenticated, user } = useContext(AuthContext);
+  const { isAuthenticated, user, logout } = useContext(AuthContext);
 
-  const handleLogout = () => {};
+  const handleLogout = () => {
+    logout();
+  };
 
   return (
     <nav className="sticky top-0 z-50 bg-white/90 backdrop-blur-0 border-b border-slate-200 shadow-sm">
