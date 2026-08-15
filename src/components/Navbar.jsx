@@ -3,7 +3,9 @@ import {
   ChevronDown,
   LayoutDashboard,
   LogOut,
+  Menu,
   Settings,
+  X,
 } from "lucide-react";
 import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
@@ -11,6 +13,7 @@ import { AuthContext } from "../context/AuthContext";
 
 function Navbar() {
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
   const pathActive = window.location.pathname === "/";
 
   const { isAuthenticated, user } = useContext(AuthContext);
@@ -106,8 +109,78 @@ function Navbar() {
               </>
             )}
           </div>
+
+          <button
+            className="md:hidden p-2 rounded-lg hover:bg-slate-300 transition-colors"
+            onClick={() => setMobileOpen((prev) => !prev)}
+          >
+            {mobileOpen ? <X size={20} /> : <Menu size={20} />}
+          </button>
         </div>
       </div>
+
+      {mobileOpen && (
+        <div className="md:hidden border-t border-slate-100 bg-white">
+          <div className="px-4 py-3 space-y-1">
+            <Link
+              to="/"
+              className="block px-4 py-2.5 rounded-xl text-sm font-medium text-slate-800 hover:bg-slate-300"
+            >
+              Home
+            </Link>
+            <Link
+              to="/service"
+              className="block px-4 py-2.5 rounded-xl text-sm font-medium text-slate-800 hover:bg-slate-300"
+            >
+              Service
+            </Link>
+            {isAuthenticated ? (
+              <>
+                {user?.role === "ADMIN" ? (
+                  <Link
+                    to="/admin"
+                    onClick={() => mobileOpen((prev) => !prev)}
+                    className="block px-4 py-2.5 text-sm font-medium text-slate-800"
+                  >
+                    Admin dashboard
+                  </Link>
+                ) : (
+                  <Link
+                    to="/dashboard"
+                    onClick={() => mobileOpen((prev) => !prev)}
+                    className="block px-4 py-2.5 text-sm font-medium text-slate-800"
+                  >
+                    My dashboard
+                  </Link>
+                )}
+                <button
+                  onClick={handleLogout}
+                  className="w-full px-4 py-2.5 rounded-xl text-sm text-red-500 font-medium"
+                >
+                  Sign out
+                </button>
+              </>
+            ) : (
+              <div className="flex gap-2 pt-1">
+                <Link
+                  to="/login"
+                  onClick={() => mobileOpen((prev) => !prev)}
+                  className="flex-1 btn-secondary text-center text-sm"
+                >
+                  Sign in
+                </Link>
+                <Link
+                  to="/register"
+                  onClick={() => mobileOpen((prev) => !prev)}
+                  className="flex-1 btn-primary text-center text-sm"
+                >
+                  Get started
+                </Link>
+              </div>
+            )}
+          </div>
+        </div>
+      )}
     </nav>
   );
 }
