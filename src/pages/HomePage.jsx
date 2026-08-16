@@ -3,6 +3,9 @@ import React, { useState } from "react";
 import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
 import Navbar from "../components/Navbar";
+import { useQuery } from "@tanstack/react-query";
+import { getServices } from "../services/ServiceService";
+import ServiceCard from "../components/ServiceCard";
 
 function HomePage() {
   const [search, setSearch] = useState("");
@@ -29,6 +32,13 @@ function HomePage() {
       desc: "All service providers are vetted and highly rated by our customers",
     },
   ];
+
+  const { data } = useQuery({
+    queryKey: ["services"],
+    queryFn: () => getServices(),
+  });
+
+  const services = data?.data || [];
 
   return (
     <>
@@ -151,7 +161,9 @@ function HomePage() {
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 mt-3">
-            {/* card component */}
+            {services.map((service) => (
+              <ServiceCard key={service.id} service={service} />
+            ))}
           </div>
         </section>
 
