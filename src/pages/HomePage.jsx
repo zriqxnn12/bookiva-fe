@@ -35,10 +35,10 @@ function HomePage() {
 
   const { data } = useQuery({
     queryKey: ["services"],
-    queryFn: () => getServices(),
+    queryFn: () => getServices({ limit: 4 }),
   });
 
-  const services = data?.data || [];
+  const services = data?.data?.services || [];
 
   return (
     <>

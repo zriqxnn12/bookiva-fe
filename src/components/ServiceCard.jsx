@@ -60,7 +60,7 @@ function ServiceCard({ service }) {
             {service.duration} min
           </span>
         </div>
-        <div className="flex items-center justify-between">
+        <div className="flex items-end justify-between">
           <div>
             <span className="text-xs text-slate-400">from</span>
             <p className="font-bold text-blue-700">
