@@ -6,6 +6,7 @@ import Login from "./pages/Login";
 import { Toaster } from "react-hot-toast";
 import AuthProvider from "./context/AuthProvider";
 import Dashboard from "./pages/Dashboard";
+import ServicePage from "./pages/ServicePage";
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
               <Route path="/register" element={<Register />} />
               <Route path="/login" element={<Login />} />
               <Route path="/dashboard" element={<Dashboard />} />
+              <Route path="/services" element={<ServicePage />} />
             </Routes>
           </HelmetProvider>
         </AuthProvider>
