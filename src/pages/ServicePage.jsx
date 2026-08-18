@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Navbar from "../components/Navbar";
 import { Helmet } from "react-helmet-async";
-import { Briefcase, Search, X } from "lucide-react";
+import { ArrowLeft, ArrowRight, Briefcase, Search, X } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
 import { getCategories } from "../services/CategoryService";
 import { useSearchParams } from "react-router-dom";
@@ -143,6 +143,46 @@ function ServicePage() {
               {services.map((s) => (
                 <ServiceCard key={s.id} service={s} />
               ))}
+            </div>
+          )}
+
+          {pagination && pagination.totalPage > 1 && (
+            <div className="flex items-center justify-center gap-2 mt-10">
+              <button
+                disabled={page === 1}
+                onClick={() => setPage((prev) => prev - 1)}
+                className="btn-secondary px-4 py-2 text-sm disabled:opacity-40 disabled:cursor-not-allowed"
+              >
+                <div className="flex flex-row items-center justify-center">
+                  <ArrowLeft size={11} className="mr-1" /> Prev
+                </div>
+              </button>
+              <div className="flex gap-1">
+                {[...Array(pagination.totalPage)].map((_, i) => (
+                  <button
+                    key={i}
+                    onClick={() => setPage(i + 1)}
+                    className={`w-9 h-9 text-sm font-medium rounded-xl transition-all 
+                      ${
+                        page === i + 1
+                          ? "bg-blue-600 text-white"
+                          : "bg-white text-slate-800 border border-slate-200 hover:border-slate-400 hover:text-blue-600"
+                      }`}
+                  >
+                    {i + 1}
+                  </button>
+                ))}
+              </div>
+              <button
+                disabled={page === pagination.totalPage}
+                onClick={() => setPage((prev) => prev + 1)}
+                className="btn-secondary px-4 py-2 text-sm disabled:opacity-40 disabled:cursor-not-allowed"
+              >
+                <div className="flex flex-row items-center justify-center">
+                  Next
+                  <ArrowRight size={11} className="ml-1" />
+                </div>
+              </button>
             </div>
           )}
         </div>
