@@ -8,6 +8,7 @@ import { useSearchParams } from "react-router-dom";
 import { getServices } from "../services/ServiceService";
 import { EmptyState } from "../helper/ui";
 import ServiceCard from "../components/ServiceCard";
+import Footer from "../components/Footer";
 
 function ServicePage() {
   const [searchParam, setSearchParam] = useSearchParams();
@@ -119,7 +120,7 @@ function ServicePage() {
             </div>
           </div>
         </div>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 mb-6">
           {pagination && (
             <p className="text-sm text-slate-800 mb-5">
               {pagination.count} service{pagination.count !== 1 ? "s" : ""}{" "}
@@ -186,6 +187,7 @@ function ServicePage() {
             </div>
           )}
         </div>
+        <Footer />
       </div>
     </>
   );
