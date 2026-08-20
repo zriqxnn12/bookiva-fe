@@ -35,7 +35,7 @@ function ServiceDetailPage() {
   const navigate = useNavigate();
 
   const { data } = useQuery({
-    queryKey: ["service"],
+    queryKey: ["service", id],
     queryFn: () => getService(id),
   });
 

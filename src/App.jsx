@@ -8,6 +8,8 @@ import AuthProvider from "./context/AuthProvider";
 import Dashboard from "./pages/Dashboard";
 import ServicePage from "./pages/ServicePage";
 import ServiceDetailPage from "./pages/ServiceDetailPage";
+import BookingPage from "./pages/BookingPage";
+import ProtectedRoute from "./routes/ProtectedRoute";
 
 function App() {
   return (
@@ -33,6 +35,9 @@ function App() {
               <Route path="/dashboard" element={<Dashboard />} />
               <Route path="/services" element={<ServicePage />} />
               <Route path="/services/:id" element={<ServiceDetailPage />} />
+              <Route element={<ProtectedRoute />}>
+                <Route path="/services/:id/book" element={<BookingPage />} />
+              </Route>
             </Routes>
           </HelmetProvider>
         </AuthProvider>

@@ -9,3 +9,9 @@ export const getService = async (id) => {
   const response = await api.get(`/services/${id}`);
   return response.data;
 };
+
+// for time slots service
+export const getSlots = async (id, date) => {
+  const response = await api.get(`/services/${id}/slots`, { params: { date } });
+  return response.data;
+};
