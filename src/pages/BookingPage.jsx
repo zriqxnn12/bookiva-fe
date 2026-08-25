@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { Helmet } from "react-helmet-async";
 import Navbar from "../components/Navbar";
-import { Link, useParams } from "react-router-dom";
-import { useQuery } from "@tanstack/react-query";
+import { Link, useNavigate, useParams } from "react-router-dom";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import { getService, getSlots } from "../services/ServiceService";
 import {
   AlertCircle,
@@ -24,6 +24,8 @@ import {
   startOfMonth,
   subMonths,
 } from "date-fns";
+import { createBooking } from "../services/BookingService";
+import toast from "react-hot-toast";
 
 const DAY_LABELS = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
@@ -33,6 +35,7 @@ function BookingPage() {
   const [selectedSlot, setSelectedSlot] = useState(null);
   const [notes, setNotes] = useState("");
   const [calMonth, setCalMonth] = useState(new Date());
+  const navigate = useNavigate();
 
   const { data } = useQuery({
     queryKey: ["service", id],
@@ -49,6 +52,16 @@ function BookingPage() {
   });
 
   const slots = slotsData?.data || [];
+
+  const bookMutation = useMutation({
+    mutationFn: (data) => createBooking(data),
+    onSuccess: (res) => {
+      const bookingId = res.data.id;
+      toast.success("Booking created! Proceeding to payment.");
+      navigate(`/bookings/${bookingId}`);
+    },
+    onError: (err) => toast.error(err.response?.message || "Booking Failed"),
+  });
 
   if (!service) {
     return (
@@ -67,7 +80,15 @@ function BookingPage() {
   const startPadding = getDay(monthStart);
   const today = startOfDay(new Date());
 
-  const handleBook = () => {};
+  const handleBook = () => {
+    if (!selectedDate || !selectedSlot) return;
+    bookMutation.mutate({
+      service_id: id,
+      slot_id: selectedSlot.id,
+      booking_date: format(selectedDate, "yyyy-MM-dd"),
+      note: notes,
+    });
+  };
 
   return (
     <>
@@ -232,7 +253,7 @@ function BookingPage() {
                     <div className="flex justify-between text-slate-800">
                       <span>Date</span>
                       <span className="font-medium">
-                        {format(selectedDate, "MM/dd/yyyy")}
+                        {format(selectedDate, "dd/MM/yyyy")}
                       </span>
                     </div>
                   )}

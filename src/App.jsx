@@ -10,6 +10,7 @@ import ServicePage from "./pages/ServicePage";
 import ServiceDetailPage from "./pages/ServiceDetailPage";
 import BookingPage from "./pages/BookingPage";
 import ProtectedRoute from "./routes/ProtectedRoute";
+import BookingPageDetail from "./pages/BookingPageDetail";
 
 function App() {
   return (
@@ -38,6 +39,7 @@ function App() {
               <Route element={<ProtectedRoute />}>
                 <Route path="/services/:id/book" element={<BookingPage />} />
               </Route>
+              <Route path="/bookings/:id" element={<BookingPageDetail />} />
             </Routes>
           </HelmetProvider>
         </AuthProvider>
