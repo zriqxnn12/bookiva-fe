@@ -5,9 +5,17 @@ import { loginUser, registerUser } from "../services/AuthService";
 import toast from "react-hot-toast";
 
 function AuthProvider({ children }) {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [user, setUser] = useState(null);
-  const [token, setToken] = useState("");
+  const [user, setUser] = useState(() => {
+    const localStorageUser = localStorage.getItem("user");
+    if (localStorageUser) {
+      return JSON.parse(localStorageUser);
+    }
+  });
+  const [token, setToken] = useState(() => localStorage.getItem("token") || "");
+  const [isAuthenticated, setIsAuthenticated] = useState(
+    !!localStorage.getItem("token"),
+  );
+
   const navigate = useNavigate();
 
   const register = async (user) => {
@@ -18,6 +26,7 @@ function AuthProvider({ children }) {
         setUser(result.data.user);
         setToken(result.data.token);
         localStorage.setItem("token", result.data.token);
+        localStorage.setItem("user", JSON.stringify(result.data.user));
         setIsAuthenticated(true);
         toast.success("Register success!");
         navigate("/");
@@ -37,6 +46,7 @@ function AuthProvider({ children }) {
         setUser(result.data.user);
         setToken(result.data.token);
         localStorage.setItem("token", result.data.token);
+        localStorage.setItem("user", JSON.stringify(result.data.user));
         setIsAuthenticated(true);
         toast.success("Login success!");
         navigate("/");
@@ -50,6 +60,7 @@ function AuthProvider({ children }) {
 
   const logout = async () => {
     localStorage.removeItem("token");
+    localStorage.removeItem("user");
     setIsAuthenticated(false);
     setToken("");
     setUser(null);
