@@ -69,7 +69,7 @@ function HomePage() {
               near you
             </h1>
             <p className="text-blue-200 max-w-xl mb-8">
-              From tennis court to beauty salons, discover and book premium
+              From sports court to beauty salons, discover and book premium
               services with real-time availability and instant confirmation.
             </p>
 
