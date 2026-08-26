@@ -11,6 +11,7 @@ import ServiceDetailPage from "./pages/ServiceDetailPage";
 import BookingPage from "./pages/BookingPage";
 import ProtectedRoute from "./routes/ProtectedRoute";
 import BookingPageDetail from "./pages/BookingPageDetail";
+import GuestRoute from "./routes/GuestRoute";
 
 function App() {
   return (
@@ -31,15 +32,19 @@ function App() {
           <HelmetProvider>
             <Routes>
               <Route path="/" element={<HomePage />} />
-              <Route path="/register" element={<Register />} />
-              <Route path="/login" element={<Login />} />
-              <Route path="/dashboard" element={<Dashboard />} />
               <Route path="/services" element={<ServicePage />} />
               <Route path="/services/:id" element={<ServiceDetailPage />} />
-              <Route element={<ProtectedRoute />}>
-                <Route path="/services/:id/book" element={<BookingPage />} />
+
+              <Route element={<GuestRoute />}>
+                <Route path="/register" element={<Register />} />
+                <Route path="/login" element={<Login />} />
               </Route>
-              <Route path="/bookings/:id" element={<BookingPageDetail />} />
+
+              <Route element={<ProtectedRoute />}>
+                <Route path="/dashboard" element={<Dashboard />} />
+                <Route path="/services/:id/book" element={<BookingPage />} />
+                <Route path="/bookings/:id" element={<BookingPageDetail />} />
+              </Route>
             </Routes>
           </HelmetProvider>
         </AuthProvider>
