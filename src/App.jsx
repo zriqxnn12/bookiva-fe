@@ -12,6 +12,8 @@ import BookingPage from "./pages/BookingPage";
 import ProtectedRoute from "./routes/ProtectedRoute";
 import BookingPageDetail from "./pages/BookingPageDetail";
 import GuestRoute from "./routes/GuestRoute";
+import AdminLayout from "./components/AdminLayout";
+import AdminDashboard from "./pages/admin/AdminDashboard";
 
 function App() {
   return (
@@ -44,6 +46,16 @@ function App() {
                 <Route path="/dashboard" element={<Dashboard />} />
                 <Route path="/services/:id/book" element={<BookingPage />} />
                 <Route path="/bookings/:id" element={<BookingPageDetail />} />
+              </Route>
+
+              {/* admin route */}
+              <Route
+                path="/admin"
+                element={<ProtectedRoute isAdminOnly={true} />}
+              >
+                <Route element={<AdminLayout />}>
+                  <Route index element={<AdminDashboard />} />
+                </Route>
               </Route>
             </Routes>
           </HelmetProvider>
