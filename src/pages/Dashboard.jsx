@@ -138,40 +138,48 @@ function Dashboard() {
               </div>
             </div>
 
-            {bookings.map((booking) => (
-              <Link
-                key={booking.id}
-                to={`/bookings/${booking.id}`}
-                className="flex items-start sm:items-center gap-4 p-4 sm:p-5 hover:bg-slate-50 transition-colors group"
-              >
-                <div className="h-10 w-10 rounded-xl bg-blue-50 flex items-center justify-center shrink-0 text-lg">
-                  {booking.service.category?.icon}
-                </div>
-                <div className="flex-1 min-w-0">
-                  <p className="font-medium text-slate-800 truncate group-hover:text-blue-700 transition-colors">
-                    {booking.service.name}
-                  </p>
-                  <div className="flex items-center gap-3 text-xs text-slate-400 mt-0.5">
-                    <span>
-                      {format(new Date(booking.booking_date), "EEE, MMM d")}
-                    </span>
-                    <span>.</span>
-                    <span>{booking.time_slot.start_time}</span>
-                    <span>.</span>
-                    <span className="font-semibold text-slate-800">
-                      {formatCurrency(booking.total_amount)}
-                    </span>
-                  </div>
-                </div>
-                <div className="flex items-center gap-2 shrink-0">
-                  <StatusBadge status={booking.booking_status} />
-                  <ChevronRight
-                    size={15}
-                    className="text-slate-300 group-hover:text-slate-800 transition-colors"
-                  />
-                </div>
-              </Link>
-            ))}
+            {bookings.length === 0 ? (
+              <div className="text-sm p-4 sm:p-5 text-slate-500 text-center">
+                No bookings found.
+              </div>
+            ) : (
+              <>
+                {bookings.map((booking) => (
+                  <Link
+                    key={booking.id}
+                    to={`/bookings/${booking.id}`}
+                    className="flex items-start sm:items-center gap-4 p-4 sm:p-5 hover:bg-slate-50 transition-colors group"
+                  >
+                    <div className="h-10 w-10 rounded-xl bg-blue-50 flex items-center justify-center shrink-0 text-lg">
+                      {booking.service.category?.icon}
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <p className="font-medium text-slate-800 truncate group-hover:text-blue-700 transition-colors">
+                        {booking.service.name}
+                      </p>
+                      <div className="flex items-center gap-3 text-xs text-slate-400 mt-0.5">
+                        <span>
+                          {format(new Date(booking.booking_date), "EEE, MMM d")}
+                        </span>
+                        <span>.</span>
+                        <span>{booking.time_slot.start_time}</span>
+                        <span>.</span>
+                        <span className="font-semibold text-slate-800">
+                          {formatCurrency(booking.total_amount)}
+                        </span>
+                      </div>
+                    </div>
+                    <div className="flex items-center gap-2 shrink-0">
+                      <StatusBadge status={booking.booking_status} />
+                      <ChevronRight
+                        size={15}
+                        className="text-slate-300 group-hover:text-slate-800 transition-colors"
+                      />
+                    </div>
+                  </Link>
+                ))}
+              </>
+            )}
           </div>
           {pagination && pagination.totalPage > 1 && (
             <div className="p-4 border-t border-slate-200 flex justify-center gap-2">
