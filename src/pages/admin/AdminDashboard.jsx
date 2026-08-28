@@ -64,7 +64,7 @@ function AdminDashboard() {
         <meta property="og:description" content="BookIva - Admin Dashboard" />
       </Helmet>
 
-      <div className="mb-8">
+      <div>
         <h2 className="text-2xl font-bold text-slate-900">Dashboard</h2>
         <p className="text-slate-800 mt-1 text-sm mb-8">
           Overview of your booking platform
