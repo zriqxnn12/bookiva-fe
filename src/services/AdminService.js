@@ -31,3 +31,8 @@ export const deleteService = async (id) => {
   const response = await api.delete(`/admin/services/${id}`);
   return response.data;
 };
+
+export const getUsers = async (params) => {
+  const response = await api.get(`/admin/users`, { params });
+  return response.data;
+};

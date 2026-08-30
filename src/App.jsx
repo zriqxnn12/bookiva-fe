@@ -16,6 +16,7 @@ import AdminLayout from "./components/AdminLayout";
 import AdminDashboard from "./pages/admin/AdminDashboard";
 import AdminBooking from "./pages/admin/AdminBooking";
 import AdminServices from "./pages/admin/AdminServices";
+import AdminUsers from "./pages/admin/AdminUsers";
 
 function App() {
   return (
@@ -59,6 +60,7 @@ function App() {
                   <Route index element={<AdminDashboard />} />
                   <Route path="bookings" element={<AdminBooking />} />
                   <Route path="services" element={<AdminServices />} />
+                  <Route path="users" element={<AdminUsers />} />
                 </Route>
               </Route>
             </Routes>
