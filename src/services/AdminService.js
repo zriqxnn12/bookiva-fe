@@ -16,3 +16,18 @@ export const updateBooking = async (id, newStatus) => {
   });
   return response.data;
 };
+
+export const createService = async (service) => {
+  const response = await api.post(`/admin/services`, service);
+  return response.data;
+};
+
+export const updateService = async (id, service) => {
+  const response = await api.put(`/admin/services/${id}`, service);
+  return response.data;
+};
+
+export const deleteService = async (id) => {
+  const response = await api.delete(`/admin/services/${id}`);
+  return response.data;
+};

@@ -15,6 +15,7 @@ import GuestRoute from "./routes/GuestRoute";
 import AdminLayout from "./components/AdminLayout";
 import AdminDashboard from "./pages/admin/AdminDashboard";
 import AdminBooking from "./pages/admin/AdminBooking";
+import AdminServices from "./pages/admin/AdminServices";
 
 function App() {
   return (
@@ -57,6 +58,7 @@ function App() {
                 <Route element={<AdminLayout />}>
                   <Route index element={<AdminDashboard />} />
                   <Route path="bookings" element={<AdminBooking />} />
+                  <Route path="services" element={<AdminServices />} />
                 </Route>
               </Route>
             </Routes>
