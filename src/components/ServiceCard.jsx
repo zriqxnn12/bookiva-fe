@@ -14,7 +14,7 @@ const SERVICE_IMAGES = {
     "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=400&q=80",
 };
 
-function ServiceCard({ service }) {
+function ServiceCard({ service, isActive }) {
   const imgUrl =
     SERVICE_IMAGES[service.category?.name] ||
     "https://images.unsplash.com/photo-1497366216548-37526070297c?w=400&q=80";
@@ -67,12 +67,21 @@ function ServiceCard({ service }) {
               {formatCurrency(service.price)}
             </p>
           </div>
-          <Link
-            to={`/services/${service.id}`}
-            className="flex items-center gap-1.5 bg-blue-600 hover:bg-blue-700 text-white text-xs font-semibold px-4 py-2 rounded-xl transition-all active:scale-95 shadow-sm hover:shadow-md"
-          >
-            Book now
-          </Link>
+          {!isActive === true ? (
+            <button
+              disabled
+              className="flex items-center gap-1.5 opacity-45 bg-blue-600 hover:bg-blue-700 text-white text-xs font-semibold px-4 py-2 rounded-xl transition-all active:scale-95 shadow-sm hover:shadow-md cursor-not-allowed"
+            >
+              Deactivated
+            </button>
+          ) : (
+            <Link
+              to={`/services/${service.id}`}
+              className="flex items-center gap-1.5 bg-blue-600 hover:bg-blue-700 text-white text-xs font-semibold px-4 py-2 rounded-xl transition-all active:scale-95 shadow-sm hover:shadow-md"
+            >
+              Book now
+            </Link>
+          )}
         </div>
       </div>
     </div>

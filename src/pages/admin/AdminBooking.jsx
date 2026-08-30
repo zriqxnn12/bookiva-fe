@@ -53,7 +53,7 @@ function AdminBooking() {
         bookingStatus: bookingStatus || undefined,
         search: search || undefined,
         page,
-        limit: 10,
+        limit: 7,
       }),
   });
 
@@ -226,32 +226,32 @@ function AdminBooking() {
               </tbody>
             </table>
           )}
-        </div>
-        {/* pagination */}
-        {pagination && pagination.totalPage > 1 && (
-          <div className="px-5 py-3 border-t border-slate-200 flex items-center justify-between text-sm">
-            <span>
-              Showing {(page - 1) * 10 + 1}
-              {Math.min(page * 10, pagination.total)} of {pagination.total}
-            </span>
-            <div className="flex gap-2">
-              <button
-                disabled={page === 1}
-                onClick={() => setPage((p) => p - 1)}
-                className="btn-secondary px-3 py-1.5 text-xs disabled:opacity-40"
-              >
-                <ArrowLeft size={10} className="mr-1" /> Prev
-              </button>
-              <button
-                disabled={page === pagination.totalPage}
-                onClick={() => setPage((p) => p + 1)}
-                className="btn-secondary px-3 py-1.5 text-xs disabled:opacity-40"
-              >
-                Next <ArrowRight size={10} className="ml-1" />
-              </button>
+          {/* pagination */}
+          {pagination && pagination.totalPage > 1 && (
+            <div className="px-5 py-3 border-t border-slate-200 flex items-center justify-between text-sm">
+              <span>
+                Showing {(page - 1) * 10 + 1}
+                {Math.min(page * 10, pagination.total)} of {pagination.total}
+              </span>
+              <div className="flex gap-2">
+                <button
+                  disabled={page === 1}
+                  onClick={() => setPage((p) => p - 1)}
+                  className="btn-secondary px-3 py-1.5 text-xs disabled:opacity-40"
+                >
+                  <ArrowLeft size={10} className="mr-1" /> Prev
+                </button>
+                <button
+                  disabled={page === pagination.totalPage}
+                  onClick={() => setPage((p) => p + 1)}
+                  className="btn-secondary px-3 py-1.5 text-xs disabled:opacity-40"
+                >
+                  Next <ArrowRight size={10} className="ml-1" />
+                </button>
+              </div>
             </div>
-          </div>
-        )}
+          )}
+        </div>
       </div>
     </>
   );
