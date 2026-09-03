@@ -80,7 +80,9 @@ function AdminUsers() {
                       </div>
                     </div>
                   </td>
-                  <td className="px-5 py-4 text-slate-900">{user.phone}</td>
+                  <td className="px-5 py-4 text-slate-900">
+                    {user.phone || "-"}
+                  </td>
                   <td className="px-5 py-4">
                     <span className="font-bold text-slate-900">
                       {user._count?.bookings || 0}

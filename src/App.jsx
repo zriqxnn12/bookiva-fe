@@ -17,6 +17,7 @@ import AdminDashboard from "./pages/admin/AdminDashboard";
 import AdminBooking from "./pages/admin/AdminBooking";
 import AdminServices from "./pages/admin/AdminServices";
 import AdminUsers from "./pages/admin/AdminUsers";
+import AuthCallbackPage from "./pages/AuthCallbackPage";
 
 function App() {
   return (
@@ -43,6 +44,7 @@ function App() {
               <Route element={<GuestRoute />}>
                 <Route path="/register" element={<Register />} />
                 <Route path="/login" element={<Login />} />
+                <Route path="/auth/callback" element={<AuthCallbackPage />} />
               </Route>
 
               <Route element={<ProtectedRoute />}>

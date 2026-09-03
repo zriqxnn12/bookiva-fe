@@ -67,9 +67,17 @@ function AuthProvider({ children }) {
     navigate("/login");
   };
 
+  const setAuth = (user, token) => {
+    setUser(user);
+    setToken(token);
+    setIsAuthenticated(true);
+    localStorage.setItem("token", token);
+    localStorage.setItem("user", JSON.stringify(user));
+  };
+
   return (
     <AuthContext.Provider
-      value={{ user, token, isAuthenticated, register, login, logout }}
+      value={{ user, token, isAuthenticated, register, login, logout, setAuth }}
     >
       {children}
     </AuthContext.Provider>

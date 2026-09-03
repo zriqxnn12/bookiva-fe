@@ -21,6 +21,10 @@ function Login() {
     }
   };
 
+  const handleGoogleLogin = () => {
+    window.location.href = `${import.meta.env.VITE_API_URL}/api/auth/google`;
+  };
+
   return (
     <>
       <Helmet>
@@ -79,7 +83,10 @@ function Login() {
                   Register
                 </Link>
               </p>
-              <button className="w-full flex items-center justify-center gap-3 px-4 py-3 border border-slate-300 rounded-xl mt-4 text-sm hover:bg-slate-100 transition-all shadow-sm mb-6">
+              <button
+                onClick={handleGoogleLogin}
+                className="w-full flex items-center justify-center gap-3 px-4 py-3 border border-slate-300 rounded-xl mt-4 text-sm hover:bg-slate-100 transition-all shadow-sm mb-6"
+              >
                 <svg className="w-5 h-5" viewBox="0 0 24 24">
                   <path
                     fill="#4285F4"
