@@ -7,6 +7,7 @@ import { useQuery } from "@tanstack/react-query";
 import { getServices } from "../services/ServiceService";
 import ServiceCard from "../components/ServiceCard";
 import Footer from "../components/Footer";
+import { getCategories } from "../services/CategoryService";
 
 function HomePage() {
   const [search, setSearch] = useState("");
@@ -39,7 +40,13 @@ function HomePage() {
     queryFn: () => getServices({ limit: 4 }),
   });
 
+  const { data: categoryData } = useQuery({
+    queryKey: ["categories"],
+    queryFn: () => getCategories(),
+  });
+
   const services = data?.data?.services || [];
+  const categories = categoryData?.data || [];
 
   return (
     <>
@@ -118,19 +125,14 @@ function HomePage() {
         {/* button filter section */}
         <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
           <div className="flex flex-wrap gap-3 justify-center">
-            {[
-              { emoji: "🎾", label: "Sports" },
-              { emoji: "💇‍♀️", label: "Beauty" },
-              { emoji: "💆", label: "Wellness" },
-              { emoji: "🏋️‍♀️", label: "Fitness" },
-            ].map(({ emoji, label }) => (
+            {categories.map((c) => (
               <Link
-                to={`/services?category=${label.toLowerCase()}`}
-                key={label}
+                to={`/services?category=${c.name.toLowerCase()}`}
+                key={c.id}
                 className="flex items-center font-medium gap-2 rounded-xl px-5 py-2 bg-white border border-slate-500 hover:border-slate-800 hover:bg-slate-300 transition-all text-sm text-slate-700 hover:shadow-sm"
               >
-                <span className="text-lg">{emoji}</span>
-                {label}
+                <span className="text-lg">{c.icon}</span>
+                {c.name}
               </Link>
             ))}
             <Link

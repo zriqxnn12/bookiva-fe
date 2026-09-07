@@ -232,16 +232,18 @@ function AdminServices() {
                       >
                         <Pencil size={15} />
                       </button>
-                      <button
-                        onClick={() => {
-                          if (confirm("Deactive this service?")) {
-                            deleteMutation.mutate(s.id);
-                          }
-                        }}
-                        className="p-1.5 rounded-lg hover:bg-red-50 text-slate-400 hover:text-red-600 transition-colors"
-                      >
-                        <Trash size={15} />
-                      </button>
+                      {s.isActive && (
+                        <button
+                          onClick={() => {
+                            if (confirm("Deactive this service?")) {
+                              deleteMutation.mutate(s.id);
+                            }
+                          }}
+                          className="p-1.5 rounded-lg hover:bg-red-50 text-slate-400 hover:text-red-600 transition-colors"
+                        >
+                          <Trash size={15} />
+                        </button>
+                      )}
                     </div>
                   </td>
                 </tr>
@@ -253,7 +255,7 @@ function AdminServices() {
 
       {/* modal */}
       {showModal && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/40 backdrop-blur-sm">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/40 backdrop-blur-sm animate-fade-in">
           <div className="bg-white rounded-2xl shadow-2xl w-full max-w-lg max-h-[90vh] overflow-y-auto animate-scale-in">
             <div className="flex items-center justify-between p-6 border-b border-slate-100">
               <h2 className="font-bold text-slate-900">

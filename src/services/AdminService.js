@@ -22,6 +22,21 @@ export const createService = async (service) => {
   return response.data;
 };
 
+export const createCategory = async (category) => {
+  const response = await api.post(`/admin/categories`, category);
+  return response.data;
+};
+
+export const updateCategory = async (id, category) => {
+  const response = await api.put(`/admin/categories/${id}`, category);
+  return response.data;
+};
+
+export const deleteCategory = async (id) => {
+  const response = await api.delete(`/admin/categories/${id}`);
+  return response.data;
+};
+
 export const updateService = async (id, service) => {
   const response = await api.put(`/admin/services/${id}`, service);
   return response.data;

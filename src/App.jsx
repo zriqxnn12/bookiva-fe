@@ -18,6 +18,7 @@ import AdminBooking from "./pages/admin/AdminBooking";
 import AdminServices from "./pages/admin/AdminServices";
 import AdminUsers from "./pages/admin/AdminUsers";
 import AuthCallbackPage from "./pages/AuthCallbackPage";
+import AdminCategory from "./pages/admin/AdminCategory";
 
 function App() {
   return (
@@ -63,6 +64,7 @@ function App() {
                   <Route path="bookings" element={<AdminBooking />} />
                   <Route path="services" element={<AdminServices />} />
                   <Route path="users" element={<AdminUsers />} />
+                  <Route path="categories" element={<AdminCategory />} />
                 </Route>
               </Route>
             </Routes>

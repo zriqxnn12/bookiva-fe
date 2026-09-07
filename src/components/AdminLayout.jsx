@@ -5,6 +5,7 @@ import {
   LayoutDashboard,
   LogOut,
   Menu,
+  Subtitles,
   Users,
 } from "lucide-react";
 import React, { useContext, useState } from "react";
@@ -15,6 +16,7 @@ const navItems = [
   { path: "/admin", label: "Dashboard", icon: LayoutDashboard },
   { path: "/admin/bookings", label: "Bookings", icon: CalendarDays },
   { path: "/admin/services", label: "Services", icon: Briefcase },
+  { path: "/admin/categories", label: "Categories", icon: Subtitles },
   { path: "/admin/users", label: "Users", icon: Users },
 ];
 
