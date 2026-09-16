@@ -139,7 +139,7 @@ function AdminCategory() {
             <tbody className="divide-y divide-slate-100">
               {categories.map((c) => (
                 <tr key={c.id} className="hover:bg-slate-50 transition-colors">
-                  <td className="px-5 py-4 text-slate-600">
+                  <td className="px-5 py-4 text-slate-900 font-medium">
                     {c.icon} {c.name}
                   </td>
                   <td className="px-5 py-4">
