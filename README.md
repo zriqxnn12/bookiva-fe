@@ -154,7 +154,9 @@ The application will be running at:
 ## 🧑‍💻 Contact
 
 **Mohamad Azriqin**
+
 📧 Email: azriqinmohd@gmail.com
+
 💼 LinkedIn: [linkedin.com/in/username](https://linkedin.com)
 
 ---
