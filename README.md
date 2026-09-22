@@ -35,8 +35,6 @@ This project was developed **end-to-end** — from database design, REST API, au
 
 ## 🎥 Demo
 
-> Add your live demo link and a short walkthrough video here (e.g. deployed on Vercel/Railway, or a GIF of the booking flow).
-
 - 🎬 Video Walkthrough: `https://your-video-link.com`
 
 ## ✨ Key Features
