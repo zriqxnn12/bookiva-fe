@@ -81,8 +81,6 @@ flowchart LR
 | ----------------------------------- | ----------------------------------- | ------------------------------------ | ----------------------------------- |
 | ![home](img/bookiva-homescreen.png) | ![service](img/bookiva-service.png) | ![booking](img/bookiva-calendar.png) | ![admin](img/bookiva-dashboard.png) |
 
-> Replace the placeholder images above with actual screenshots of your application.
-
 ## ⚙️ Installation
 
 ### Prerequisites
@@ -147,8 +145,6 @@ Backend repository here → https://github.com/zriqxnn12/bookiva-be
 - [ ] service search & filter by location
 
 ## 🧠 Challenges & Learnings
-
-> Use this section to highlight your problem-solving process — recruiters and reviewers often value this more than a plain feature list. For example:
 
 - Handling **real-time slot availability** without double bookings required careful transaction handling on the backend.
 - Integrating **Xendit's webhook/callback** for payment status updates taught me how to build idempotent payment confirmation logic.
