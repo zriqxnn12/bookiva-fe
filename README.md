@@ -1,7 +1,7 @@
 # 🎾 BookIva — Padel Court Booking Web App
 
 <p align="center">
-  <img src="https://via.placeholder.com/900x400.png?text=BookIva+Preview" alt="BookIva Preview" width="100%">
+  <img src="img/bookiva-homescreen.png" alt="BookIva Preview" width="100%">
 </p>
 
 <p align="center">
@@ -33,11 +33,11 @@
 
 This project was developed **end-to-end** — from database design, REST API, authentication (including OAuth), to third-party payment gateway integration (Xendit) — as a full-stack web development case study with a multi-role system (user & admin).
 
-## 🎥 Demo
+<!-- ## 🎥 Demo
 
 > Add your live demo link and a short walkthrough video here (e.g. deployed on Vercel/Railway, or a GIF of the booking flow).
 
-- 🎬 Video Walkthrough: `https://your-video-link.com`
+- 🎬 Video Walkthrough: `https://your-video-link.com` -->
 
 ## ✨ Key Features
 
@@ -77,9 +77,9 @@ flowchart LR
 
 ## 📸 Screenshots
 
-| Home Page                                    | Service Detail                                  | Booking Calendar                                | Admin Dashboard                               |
-| -------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- | --------------------------------------------- |
-| ![home](https://via.placeholder.com/250x150) | ![service](https://via.placeholder.com/250x150) | ![booking](https://via.placeholder.com/250x150) | ![admin](https://via.placeholder.com/250x150) |
+| Home Page                           | Service Detail                      | Booking Calendar                     | Admin Dashboard                     |
+| ----------------------------------- | ----------------------------------- | ------------------------------------ | ----------------------------------- |
+| ![home](img/bookiva-homescreen.png) | ![service](img/bookiva-service.png) | ![booking](img/bookiva-calendar.png) | ![admin](img/bookiva-dashboard.png) |
 
 > Replace the placeholder images above with actual screenshots of your application.
 
@@ -135,6 +135,10 @@ The application will be running at:
 
 - Frontend → `http://localhost:5173`
 - Backend → `http://localhost:5000`
+
+## ⚙️ Backend Source
+
+Backend repository here → https://github.com/zriqxnn12/bookiva-be
 
 ## 🚀 Roadmap
 
