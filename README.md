@@ -158,7 +158,9 @@ Backend repository here → https://github.com/zriqxnn12/bookiva-be
 ## 🧑‍💻 Contact
 
 **Mohamad Azriqin**
+
 📧 Email: azriqinmohd@gmail.com
+
 💼 LinkedIn: [linkedin.com/in/username](https://linkedin.com)
 
 ---
